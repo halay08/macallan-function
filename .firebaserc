@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "develop": "macallan-dev",
+    "production": "macallan",
+    "default": "macallan-dev"
+  }
+}

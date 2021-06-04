@@ -21,6 +21,8 @@ Loosely coupling with clear dependency graphs provided by Inversion of Control.
 
 ## Getting Started
 
+First at all, please install JDK on your local machine first because Firebase Emulator requires it.
+
 ...
 
 ## Project architecture

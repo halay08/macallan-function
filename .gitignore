@@ -11,6 +11,7 @@ typings/
 # Node.js dependency directory
 node_modules/
 .runtimeconfig.json
+serviceAccountKey.json
 
 !generate.js
 !.eslintrc.js

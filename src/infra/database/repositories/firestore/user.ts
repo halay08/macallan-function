@@ -21,19 +21,19 @@ export default class UserRepository
 
   /**
    * Map fields to domain entity
-   * @param user Entity raw field
+   * @param item Entity raw field
    * @returns domain
    */
-  protected toDomain(user: User): User {
-    return UserMapper.toDomain(user);
+  protected toDomain(item: User): User {
+    return UserMapper.toDomain(item);
   }
 
   /**
    * Serialize domain entity
-   * @param user Entity object
+   * @param item Entity object
    * @returns serialize
    */
-  protected serialize(user: User): IUserEntity {
-    return user.serialize();
+  protected serialize(item: User): IUserEntity {
+    return item.serialize();
   }
 }

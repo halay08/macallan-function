@@ -6,33 +6,17 @@ export default {
 
   // Do not remove the next line, it's using for code generator
   // SYMBOL //
-  LessonPoolService: Symbol.for('LessonPoolService'),
-  LessonPoolRepository: Symbol.for('LessonPoolRepository'),
   UserRepository: Symbol.for('UserRepository'),
-  CourseRepository: Symbol.for('CourseRepository'),
-  LessonRepository: Symbol.for('LessonRepository'),
-  ChallengeRepository: Symbol.for('ChallengeRepository'),
-  UserCourseRepository: Symbol.for('UserCourseRepository'),
-  LearningQueueRepository: Symbol.for('LearningQueueRepository'),
-  LearningSummaryRepository: Symbol.for('LearningSummaryRepository'),
-  PickedChallengeRepository: Symbol.for('PickedChallengeRepository'),
-  ChallengeResultRepository: Symbol.for('ChallengeResultRepository'),
+  ContentRepository: Symbol.for('ContentRepository'),
+  ArtworkRepository: Symbol.for('ArtworkRepository'),
 
   UserService: Symbol.for('UserService'),
   AuthService: Symbol.for('AuthService'),
-  HomeService: Symbol.for('HomeService'),
-  CourseService: Symbol.for('CourseService'),
-  LessonService: Symbol.for('LessonService'),
-  ChallengeService: Symbol.for('ChallengeService'),
-  LearningQueueService: Symbol.for('LearningQueueService'),
-  PickedChallengeService: Symbol.for('PickedChallengeService'),
-  ChallengeResultService: Symbol.for('ChallengeResultService'),
+  ContentService: Symbol.for('ContentService'),
+  ArtworkService: Symbol.for('ArtworkService'),
 
   UserSeeding: Symbol.for('UserSeeding'),
   CourseSeeding: Symbol.for('CourseSeeding'),
-  LessonSeeding: Symbol.for('LessonSeeding'),
-  LessonPoolSeeding: Symbol.for('LessonPoolSeeding'),
-  ChallengeSeeding: Symbol.for('ChallengeSeeding'),
-
-  ImportCourse: Symbol.for('ImportCourse')
+  ContentSeeding: Symbol.for('ContentSeeding'),
+  ArtworkSeeding: Symbol.for('ArtworkSeeding')
 };

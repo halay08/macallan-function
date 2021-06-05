@@ -10,7 +10,8 @@ import { IUserEntity } from '@/src/domain/types';
 @provide(TYPES.UserRepository)
 export default class UserRepository
   extends BaseRepository<User>
-  implements IUserRepository {
+  implements IUserRepository
+{
   /**
    * Gets collection
    * @returns

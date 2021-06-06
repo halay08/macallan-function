@@ -10,7 +10,8 @@ import { IContentEntity } from '@/src/domain/types';
 @provide(TYPES.ContentRepository)
 export default class ContentRepository
   extends BaseRepository<Content>
-  implements IContentRepository {
+  implements IContentRepository
+{
   /**
    * Gets collection
    * @returns

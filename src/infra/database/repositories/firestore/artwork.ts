@@ -10,7 +10,8 @@ import { IArtworkEntity } from '@/src/domain/types';
 @provide(TYPES.ArtworkRepository)
 export default class ArtworkRepository
   extends BaseRepository<Artwork>
-  implements IArtworkRepository {
+  implements IArtworkRepository
+{
   /**
    * Gets collection
    * @returns

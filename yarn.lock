@@ -5983,6 +5983,11 @@ ramda.isempty@^0.26.1:
   resolved "https://registry.yarnpkg.com/ramda.isempty/-/ramda.isempty-0.26.1.tgz#86f65428353a747d0b6442a85c2b9b27c1f0d481"
   integrity sha512-ToS3hDfbBJZJdT5GQAwHRd+WLw/ERDfOHfvrQg0TC7e8Lr+rv8QhwCfyuxusrves4fAsMdMLi1vxnnenzbZ1Pg==
 
+ramda.pick@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/ramda.pick/-/ramda.pick-0.26.1.tgz#58c0ed1d9e451b0b7fb2acad22d5b479c89fd682"
+  integrity sha512-0hBy/VCc5m3KZOBz21DpbblZKCCG+kNuamD/6BYuY/hd8xirvovTwQ+hdaXg/1F4xKFZ+zBZLwMAIc9BA1532Q==
+
 range-parser@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"

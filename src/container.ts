@@ -6,7 +6,12 @@ import 'module-alias/register';
 import './ioc.loader';
 
 import { Container } from 'inversify';
+import { buildProviderModule } from 'inversify-binding-decorators';
 import { makeLoggerMiddleware } from 'inversify-logger-middleware';
+import { FirestoreData } from './infra/database/firestore';
+import { Logger } from './infra/logging/pino';
+import TYPES from './types';
+import FireAuth from './infra/auth/firebase/auth';
 
 const container = new Container();
 if (
@@ -16,5 +21,16 @@ if (
   const logger = makeLoggerMiddleware();
   container.applyMiddleware(logger);
 }
+
+// Manually
+container.bind(TYPES.Database).to(FirestoreData).inSingletonScope();
+
+container.bind(TYPES.FireAuth).to(FireAuth).inSingletonScope();
+
+container.bind(TYPES.Logger).to(Logger).inSingletonScope();
+
+// Reflects all decorators provided by this package and packages them into
+// a module to be loaded by the container
+container.load(buildProviderModule());
 
 export default container;

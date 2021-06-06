@@ -12,10 +12,10 @@ import Container from '../container';
 import TYPES from '@/src/types';
 import { ISeeding } from '@/src/infra/database/migration';
 
-type ISeedingType = 'UserSeeding';
+type ISeedingType = 'ArtworkSeeding' | 'ContentSeeding';
 
 class Seeding {
-  #seedings: ISeedingType[] = ['UserSeeding'];
+  #seedings: ISeedingType[] = ['ArtworkSeeding', 'ContentSeeding'];
 
   async runSingle(specifiedSeeding: ISeedingType) {
     if (specifiedSeeding) {

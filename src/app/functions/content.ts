@@ -56,4 +56,50 @@ const getContents = functions
     }
   });
 
-export { createContents, getContents };
+const getContentById = functions
+  .runWith(runtimeOptions)
+  .region(region)
+  .https.onCall(async (data, context) => {
+    try {
+      const service = Container.get<ContentService>(TYPES.ContentService);
+      const { id = '' } = data;
+
+      const content = await service.getById(id);
+      if (!content) {
+        throw new HttpsError(
+          ErrorCode.NOT_FOUND,
+          'This content does not exist or has been removed!'
+        );
+      }
+
+      return content.serialize();
+    } catch (error) {
+      const { code = ErrorCode.INTERNAL } = error;
+      throw new HttpsError(code, error);
+    }
+  });
+
+const getContentByTitle = functions
+  .runWith(runtimeOptions)
+  .region(region)
+  .https.onCall(async (data, context) => {
+    try {
+      const service = Container.get<ContentService>(TYPES.ContentService);
+      const { title = '' } = data;
+
+      const [content] = await service.findBy('title', title);
+      if (!content) {
+        throw new HttpsError(
+          ErrorCode.NOT_FOUND,
+          'This content does not exist or has been removed!'
+        );
+      }
+
+      return content.serialize();
+    } catch (error) {
+      const { code = ErrorCode.INTERNAL } = error;
+      throw new HttpsError(code, error);
+    }
+  });
+
+export { createContents, getContents, getContentById, getContentByTitle };

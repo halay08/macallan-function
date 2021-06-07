@@ -7,6 +7,7 @@ import { ErrorCode, HttpsError } from '@/app/errors';
 import { Artwork } from '@/src/domain';
 import { DEFAULT_PAGE_LIMIT } from '../types';
 const pick = require('ramda.pick');
+const isEmpty = require('ramda.isempty');
 
 const createArtwork = functions
   .runWith(runtimeOptions)
@@ -47,23 +48,80 @@ const getArtworks = functions
         startAfter,
         withTrashed = false,
         status,
-        createdBy
+        createdBy,
+        orderBy
       } = data;
 
       const ref = startAfter ? service.getDocumentRef(startAfter) : undefined;
 
-      const options = [];
+      const query = [];
       if (status) {
-        options.push({ status });
+        query.push({ status });
       }
       if (createdBy) {
         const userService = Container.get<UserService>(TYPES.UserService);
-        options.push({
+        query.push({
           createdBy: userService.getDocumentRef(createdBy)
         });
       }
 
-      const contents = await service.query(options, {
+      const options = {
+        limit,
+        startAfter: ref as any,
+        withTrashed,
+        orderBy: [] as any
+      };
+      if (orderBy && Array.isArray(orderBy)) {
+        options.orderBy = orderBy;
+      }
+
+      const contents = await service.query(query, options);
+      return contents.map(c => c.serialize());
+    } catch (error) {
+      const { code = ErrorCode.INTERNAL } = error;
+      throw new HttpsError(code, error);
+    }
+  });
+
+const searchArtworksByContact = functions
+  .runWith(runtimeOptions)
+  .region(region)
+  .https.onCall(async (data, context) => {
+    try {
+      const service = Container.get<ArtworkService>(TYPES.ArtworkService);
+      const {
+        limit = DEFAULT_PAGE_LIMIT,
+        startAfter,
+        withTrashed = false,
+        status,
+        contact
+      } = data;
+
+      const ref = startAfter ? service.getDocumentRef(startAfter) : undefined;
+
+      const query = [];
+      if (status) {
+        query.push({ status });
+      }
+
+      if (contact && !isEmpty(contact)) {
+        if (contact.field == 'age') {
+          query.push({
+            [`contact.${contact.field}`]: contact.value
+          });
+        } else {
+          query.push({
+            [`contact.${contact.field}`]: contact.value,
+            operator: '>='
+          });
+          query.push({
+            [`contact.${contact.field}`]: contact.value + '\uf8ff',
+            operator: '<='
+          });
+        }
+      }
+
+      const contents = await service.query(query, {
         limit,
         startAfter: ref as any,
         withTrashed
@@ -75,4 +133,4 @@ const getArtworks = functions
     }
   });
 
-export { createArtwork, getArtworks };
+export { createArtwork, getArtworks, searchArtworksByContact };

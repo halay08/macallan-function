@@ -23,9 +23,9 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
         },
         message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         contact: {
-          email: 'halay08@gmail.com',
-          name: 'Mr.Khiem',
-          age: 33,
+          email: 'thagdet96@gmail.com',
+          name: 'Dat',
+          age: 25,
           country: 'Viet Nam'
         },
         status: ICyoStatus.IN_REVIEW
@@ -44,7 +44,7 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
           age: 33,
           country: 'Viet Nam'
         },
-        status: ICyoStatus.IN_REVIEW
+        status: ICyoStatus.APPROVED
       }
     ];
   }

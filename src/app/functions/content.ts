@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import { region, runtimeOptions } from './configs/runtime';
 import { ContentService } from '@/services';
 import TYPES from '@/src/types';
-import { DEFAULT_PAGE_LIMIT, DESCENDING_ORDER } from '@/app/types';
+import { DEFAULT_PAGE_LIMIT } from '@/app/types';
 import Container from '@/src/container';
 import { ErrorCode, HttpsError } from '@/app/errors';
 import { Content } from '@/src/domain';
@@ -37,7 +37,6 @@ const getContents = functions
       const {
         limit = DEFAULT_PAGE_LIMIT,
         startAfter,
-        orderBy = { field: 'createdAt', order: DESCENDING_ORDER },
         withTrashed = false
       } = data;
 
@@ -46,7 +45,6 @@ const getContents = functions
       const contents = await service.getAll({
         limit,
         startAfter: ref as any,
-        orderBy,
         withTrashed
       });
       return contents.map(c => c.serialize());

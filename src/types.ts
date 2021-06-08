@@ -3,6 +3,7 @@ export default {
   Logger: Symbol.for('Logger'),
   Database: Symbol.for('Database'),
   FireAuth: Symbol.for('FireAuth'),
+  SendGrid: Symbol.for('SendGrid'),
 
   // Do not remove the next line, it's using for code generator
   // SYMBOL //

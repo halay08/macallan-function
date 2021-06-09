@@ -37,6 +37,28 @@ const createArtwork = functions
     }
   });
 
+const getArtworkById = functions
+  .runWith(runtimeOptions)
+  .region(region)
+  .https.onCall(async (data, context) => {
+    try {
+      const service = Container.get<ArtworkService>(TYPES.ArtworkService);
+      const { id = '' } = data;
+      const existed = await service.getById(id);
+      if (!existed) {
+        throw new HttpsError(
+          ErrorCode.NOT_FOUND,
+          'Cannot find information for this artwork. Please try again!'
+        );
+      }
+
+      return existed.serialize();
+    } catch (error) {
+      const { code = ErrorCode.INTERNAL } = error;
+      throw new HttpsError(code, error);
+    }
+  });
+
 const getArtworks = functions
   .runWith(runtimeOptions)
   .region(region)
@@ -133,4 +155,4 @@ const searchArtworksByContact = functions
     }
   });
 
-export { createArtwork, getArtworks, searchArtworksByContact };
+export { createArtwork, getArtworks, searchArtworksByContact, getArtworkById };

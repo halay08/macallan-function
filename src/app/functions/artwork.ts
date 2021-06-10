@@ -6,6 +6,7 @@ import Container from '@/src/container';
 import { ErrorCode, HttpsError } from '@/app/errors';
 import { Artwork } from '@/src/domain';
 import { DEFAULT_PAGE_LIMIT } from '../types';
+import { ICyoStatus } from '@/domain/types';
 const pick = require('ramda.pick');
 const isEmpty = require('ramda.isempty');
 
@@ -155,4 +156,49 @@ const searchArtworksByContact = functions
     }
   });
 
-export { createArtwork, getArtworks, searchArtworksByContact, getArtworkById };
+const approveArtwork = functions
+  .runWith(runtimeOptions)
+  .region(region)
+  .https.onCall(async (data, context) => {
+    try {
+      const service = Container.get<ArtworkService>(TYPES.ArtworkService);
+      const { id = '' } = data;
+
+      const updated = await service.updateFields(id, {
+        status: ICyoStatus.APPROVED
+      });
+
+      return updated.serialize();
+    } catch (error) {
+      const { code = ErrorCode.INTERNAL } = error;
+      throw new HttpsError(code, error);
+    }
+  });
+
+const rejectArtwork = functions
+  .runWith(runtimeOptions)
+  .region(region)
+  .https.onCall(async (data, context) => {
+    try {
+      const service = Container.get<ArtworkService>(TYPES.ArtworkService);
+      const { id = '' } = data;
+
+      const updated = await service.updateFields(id, {
+        status: ICyoStatus.REJECTED
+      });
+
+      return updated.serialize();
+    } catch (error) {
+      const { code = ErrorCode.INTERNAL } = error;
+      throw new HttpsError(code, error);
+    }
+  });
+
+export {
+  createArtwork,
+  getArtworks,
+  searchArtworksByContact,
+  getArtworkById,
+  approveArtwork,
+  rejectArtwork
+};

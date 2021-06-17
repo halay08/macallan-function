@@ -1,6 +1,7 @@
 {
   "projects": {
     "develop": "macallan-dev",
+    "staging": "macallan-ecf92",
     "production": "macallan",
     "default": "macallan-dev"
   }

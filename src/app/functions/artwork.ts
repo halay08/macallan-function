@@ -7,6 +7,7 @@ import { ErrorCode, HttpsError } from '@/app/errors';
 import { Artwork } from '@/src/domain';
 import { DEFAULT_PAGE_LIMIT } from '../types';
 import { ICyoStatus } from '@/domain/types';
+import { paginate } from './configs/paginator';
 const pick = require('ramda.pick');
 const isEmpty = require('ramda.isempty');
 
@@ -99,7 +100,9 @@ const getArtworks = functions
       }
 
       const contents = await service.query(query, options);
-      return contents.map(c => c.serialize());
+      const items = contents.map(c => c.serialize());
+
+      return paginate(items, data);
     } catch (error) {
       const { code = ErrorCode.INTERNAL } = error;
       throw new HttpsError(code, error);
@@ -149,7 +152,8 @@ const searchArtworksByContact = functions
         startAfter: ref as any,
         withTrashed
       });
-      return contents.map(c => c.serialize());
+      const items = contents.map(c => c.serialize());
+      return paginate(items, data);
     } catch (error) {
       const { code = ErrorCode.INTERNAL } = error;
       throw new HttpsError(code, error);

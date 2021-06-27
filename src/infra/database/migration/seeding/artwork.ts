@@ -45,6 +45,63 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
           country: 'Viet Nam'
         },
         status: ICyoStatus.APPROVED
+      },
+      {
+        thumbnails: {
+          width: 100,
+          height: 100,
+          url: 'images/eb04e019-08f0-4ac9-ad1b-1c3f590e5ca4.png'
+        },
+        imgUrl: 'images/eb04e019-08f0-4ac9-ad1b-1c3f590e5ca4.png',
+        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        contact: {
+          name: 'Thinh Dinh',
+          age: 26,
+          country: 'Viet Nam'
+        },
+        status: ICyoStatus.APPROVED
+      },
+      {
+        thumbnails: {
+          width: 100,
+          height: 100,
+          url: 'images/185245878_377343746919085_1237031618668715602_n.jpg'
+        },
+        imgUrl: 'images/185245878_377343746919085_1237031618668715602_n.jpg',
+        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        contact: {
+          name: 'Thagdet',
+          email: 'thagdet96@gmail.com',
+          age: 25,
+          country: 'Viet Nam'
+        },
+        status: ICyoStatus.IN_REVIEW
+      },
+      {
+        thumbnails: {
+          width: 100,
+          height: 100,
+          url: 'images/166941807_263701668728056_6396550715513299493_n.png'
+        },
+        imgUrl: 'images/166941807_263701668728056_6396550715513299493_n.png',
+        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        contact: {},
+        status: ICyoStatus.REJECTED
+      },
+      {
+        thumbnails: {
+          width: 100,
+          height: 100,
+          url: 'images/eb04e019-08f0-4ac9-ad1b-1c3f590e5ca4.png'
+        },
+        imgUrl: 'images/eb04e019-08f0-4ac9-ad1b-1c3f590e5ca4.png',
+        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        contact: {
+          name: 'Ken Lee',
+          email: 'halay08@gmail.com',
+          country: 'Viet Nam'
+        },
+        status: ICyoStatus.IN_REVIEW
       }
     ];
   }

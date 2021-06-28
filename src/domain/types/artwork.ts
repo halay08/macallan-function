@@ -19,6 +19,12 @@ enum ICyoStatus {
   REJECTED = 'rejected'
 }
 
+type IPublished = {
+  date: number;
+  month: number;
+  year: number;
+};
+
 type IArtworkEntity = IEntity &
   ITimestamp & {
     imgUrl: string;
@@ -27,6 +33,7 @@ type IArtworkEntity = IEntity &
     message?: string;
     contact: Partial<IContact>;
     status: ICyoStatus;
+    publishedAt: IPublished;
   };
 
-export { IArtworkEntity, IThumbnail, ICyoStatus, IContact };
+export { IArtworkEntity, IThumbnail, ICyoStatus, IContact, IPublished };

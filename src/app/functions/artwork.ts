@@ -30,6 +30,12 @@ const createArtwork = functions
         ['imgUrl', 'thumbnails', 'createdBy', 'message', 'contact', 'status'],
         data
       );
+      const date = new Date();
+      artworkData['publishedAt'] = {
+        date: date.getDate(),
+        month: date.getMonth(),
+        year: date.getFullYear()
+      };
       const artwork = Artwork.create(artworkData);
       const inserted = await service.create(artwork);
       return inserted.serialize();
@@ -73,7 +79,8 @@ const getArtworks = functions
         withTrashed = false,
         status,
         createdBy,
-        orderBy
+        orderBy,
+        filterByTime
       } = data;
 
       const ref = startAfter ? service.getDocumentRef(startAfter) : undefined;
@@ -87,6 +94,20 @@ const getArtworks = functions
         query.push({
           createdBy: userService.getDocumentRef(createdBy)
         });
+      }
+      if (filterByTime && !isEmpty(filterByTime)) {
+        for (const [key, value] of Object.entries(filterByTime)) {
+          if (key === 'year') {
+            query.push({
+              [`publishedAt.${key}`]: value
+            });
+          } else {
+            query.push({
+              [`publishedAt.${key}`]: value,
+              operator: 'in'
+            });
+          }
+        }
       }
 
       const options = {

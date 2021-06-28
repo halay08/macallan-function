@@ -75,7 +75,6 @@ export default class FirestoreCollection<T extends IEntity> {
       ? {
           ...Object.assign(doc.data(), data),
           id: doc.ref.id,
-          createdAt: doc.createTime,
           updatedAt: doc.updateTime
         }
       : (null as any);
@@ -202,6 +201,7 @@ export default class FirestoreCollection<T extends IEntity> {
 
     if (this.#softDelete) {
       dataModel['deletedAt'] = null;
+      dataModel['createdAt'] = time.getCurrentUTCDate();
     }
 
     // Not allow to write field `id` to database
@@ -224,6 +224,7 @@ export default class FirestoreCollection<T extends IEntity> {
 
     if (this.#softDelete) {
       dataModel['deletedAt'] = null;
+      dataModel['createdAt'] = time.getCurrentUTCDate();
     }
 
     // Not allow to write field `id` to database

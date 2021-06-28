@@ -1,6 +1,12 @@
 import { Entity } from './entity';
 import { injectable } from 'inversify';
-import { IArtworkEntity, ICyoStatus, IContact, IThumbnail } from './types';
+import {
+  IArtworkEntity,
+  ICyoStatus,
+  IContact,
+  IThumbnail,
+  IPublished
+} from './types';
 
 // Collection: artwork
 @injectable()
@@ -63,5 +69,9 @@ export class Artwork extends Entity<IArtworkEntity> {
    */
   get status(): ICyoStatus {
     return this.props.status;
+  }
+
+  get publishedAt(): IPublished {
+    return this.props.publishedAt;
   }
 }

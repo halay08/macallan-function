@@ -20,7 +20,7 @@
     "auth": "firebase emulators:start --only auth,pubsub",
     "firestore": "firebase emulators:start --only firestore",
     "tools": "firebase emulators:start --only auth,pubsub,firestore,database",
-    "emulators": "firebase emulators:start --only auth,pubsub,firestore,database,functions",
+    "emulators": "firebase emulators:start --only auth,pubsub,firestore,database,functions,storage",
     "emulators:export": "firebase emulators:export --force ./.data",
     "emulators:import": "firebase emulators:start --only auth,pubsub,firestore,database,functions --import ./.data",
     "logs": "firebase functions:log"

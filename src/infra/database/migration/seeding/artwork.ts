@@ -28,7 +28,12 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
           age: 25,
           country: 'Viet Nam'
         },
-        status: ICyoStatus.IN_REVIEW
+        status: ICyoStatus.IN_REVIEW,
+        publishedAt: {
+          date: 28,
+          month: 6,
+          year: 2021
+        }
       },
       {
         imgUrl: 'images/183628537_164784448892606_5429103896350473610_n.jpg',
@@ -44,7 +49,12 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
           age: 33,
           country: 'Viet Nam'
         },
-        status: ICyoStatus.APPROVED
+        status: ICyoStatus.APPROVED,
+        publishedAt: {
+          date: 27,
+          month: 6,
+          year: 2021
+        }
       },
       {
         thumbnails: {
@@ -59,7 +69,12 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
           age: 26,
           country: 'Viet Nam'
         },
-        status: ICyoStatus.APPROVED
+        status: ICyoStatus.APPROVED,
+        publishedAt: {
+          date: 28,
+          month: 6,
+          year: 2021
+        }
       },
       {
         thumbnails: {
@@ -75,7 +90,12 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
           age: 25,
           country: 'Viet Nam'
         },
-        status: ICyoStatus.IN_REVIEW
+        status: ICyoStatus.IN_REVIEW,
+        publishedAt: {
+          date: 25,
+          month: 5,
+          year: 2021
+        }
       },
       {
         thumbnails: {
@@ -86,22 +106,32 @@ export class ArtworkSeeding extends BaseSeeding implements ISeeding {
         imgUrl: 'images/166941807_263701668728056_6396550715513299493_n.png',
         message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         contact: {},
-        status: ICyoStatus.REJECTED
+        status: ICyoStatus.REJECTED,
+        publishedAt: {
+          date: 27,
+          month: 5,
+          year: 2021
+        }
       },
       {
         thumbnails: {
           width: 100,
           height: 100,
-          url: 'images/eb04e019-08f0-4ac9-ad1b-1c3f590e5ca4.png'
+          url: 'images/561ece24-d806-404d-8b74-329fd0d01326.png'
         },
-        imgUrl: 'images/eb04e019-08f0-4ac9-ad1b-1c3f590e5ca4.png',
+        imgUrl: 'images/561ece24-d806-404d-8b74-329fd0d01326.png',
         message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         contact: {
           name: 'Ken Lee',
           email: 'halay08@gmail.com',
           country: 'Viet Nam'
         },
-        status: ICyoStatus.IN_REVIEW
+        status: ICyoStatus.IN_REVIEW,
+        publishedAt: {
+          date: 27,
+          month: 4,
+          year: 2021
+        }
       }
     ];
   }

@@ -20,6 +20,8 @@ export class ArtworkMapper {
 
       status: raw.status,
 
+      publishedAt: raw.publishedAt,
+
       createdAt: raw.createdAt,
 
       updatedAt: raw.updatedAt,

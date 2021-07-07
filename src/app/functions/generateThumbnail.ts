@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import { admin } from '@/src/firebase.config';
-import { spawn } from 'child-process-promise';
+import { spawn, execFile } from 'child-process-promise';
 import * as path from 'path';
 import * as os from 'os';
 import * as fs from 'fs';
@@ -26,10 +26,6 @@ const generateThumbnail = functions.storage
       contentType = ''
     } = object;
 
-    const width = 200,
-      height = 200;
-
-    const size = `${width}x${height}`;
     const thumbPath = '_thumbs';
 
     // [START stopConditions]
@@ -58,6 +54,23 @@ const generateThumbnail = functions.storage
     };
     await bucket.file(filePath).download({ destination: tempFilePath });
     functions.logger.log('Image downloaded locally to', tempFilePath);
+    // Get Dimensions of the image
+    const { stdout } = await execFile(
+      'identify',
+      ['-format', '%wx%h', tempFilePath],
+      {
+        capture: ['stdout', 'stderr']
+      } as any
+    );
+    const [width, height] = (stdout as any).split('x');
+    const maxSide = 200;
+    const ratio = Math.max(height / maxSide, width / maxSide);
+
+    const size = `${Math.round(width / ratio)}x${Math.round(height / ratio)}`;
+    functions.logger.log(
+      `Image width: ${width}, height: ${height}, thumbSize: ${size}`
+    );
+
     // Generate a thumbnail using ImageMagick.
     await spawn('convert', [
       tempFilePath,

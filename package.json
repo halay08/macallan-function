@@ -75,6 +75,7 @@
     "pino": "^6.7.0",
     "pino-pretty": "^4.3.0",
     "ramda.isempty": "^0.26.1",
+    "ramda.path": "^0.26.1",
     "ramda.pick": "^0.26.1",
     "reflect-metadata": "^0.1.13",
     "slugify": "^1.5.0",

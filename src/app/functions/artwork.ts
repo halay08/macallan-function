@@ -10,6 +10,7 @@ import { ICyoStatus } from '@/domain/types';
 import { paginate } from './configs/paginator';
 const pick = require('ramda.pick');
 const isEmpty = require('ramda.isempty');
+const path = require('ramda.path');
 
 const createArtwork = functions
   .runWith(runtimeOptions)
@@ -118,6 +119,11 @@ const getArtworks = functions
       };
       if (orderBy && Array.isArray(orderBy)) {
         options.orderBy = orderBy;
+        if (startAfter) {
+          const lastDoc = await service.getById(startAfter);
+          const field = path(['0', 'field'], orderBy) || '';
+          options.startAfter = (lastDoc.serialize() as any)[field] || ref;
+        }
       }
 
       const contents = await service.query(query, options);

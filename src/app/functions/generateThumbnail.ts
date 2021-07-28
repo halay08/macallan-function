@@ -63,10 +63,11 @@ const generateThumbnail = functions.storage
       } as any
     );
     const [width, height] = (stdout as any).split('x');
-    const maxSide = 200;
-    const ratio = Math.max(height / maxSide, width / maxSide);
 
-    const size = `${Math.round(width / ratio)}x${Math.round(height / ratio)}`;
+    const minSide = 200;
+    const ratio = Math.max(minSide / height, minSide / width);
+
+    const size = `${Math.round(width * ratio)}x${Math.round(height * ratio)}`;
     functions.logger.log(
       `Image width: ${width}, height: ${height}, thumbSize: ${size}`
     );

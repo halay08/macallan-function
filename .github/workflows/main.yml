@@ -114,7 +114,7 @@ jobs:
         with:
           args: use production
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_PROD }}
 
       - name: Set ENV
         uses: w9jds/firebase-action@master

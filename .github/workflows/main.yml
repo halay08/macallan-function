@@ -108,7 +108,7 @@ jobs:
           rm -rf .git .github
         shell: bash
         env:
-          SERVICE_ACCOUNT: ${{secrets.SERVICE_ACCOUNT_PROD}}
+          SERVICE_ACCOUNT_PROD: ${{secrets.SERVICE_ACCOUNT_PROD}}
 
       - name: Activate Production Project
         uses: w9jds/firebase-action@master

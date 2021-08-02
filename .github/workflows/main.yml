@@ -102,12 +102,13 @@ jobs:
 
       - name: Create Service Account and ENV
         run: |
-          echo $SERVICE_ACCOUNT > ./dist/serviceAccountKey.json
+          echo $SERVICE_ACCOUNT_PROD > ./dist/serviceAccountKey.json
           cat ./dist/serviceAccountKey.json
           cp ./env.json.production ./env.json
+          rm -rf .git .github
         shell: bash
         env:
-          SERVICE_ACCOUNT: ${{secrets.SERVICE_ACCOUNT}}
+          SERVICE_ACCOUNT: ${{secrets.SERVICE_ACCOUNT_PROD}}
 
       - name: Activate Production Project
         uses: w9jds/firebase-action@master

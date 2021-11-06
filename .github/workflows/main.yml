@@ -5,7 +5,7 @@ name: CI/CD
 # Open GitHub repository and go to Settings, then Secrets. Add your secret and name it FIREBASE_TOKEN.
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events but only for the master branch.
 on:
   push:
     branches:
